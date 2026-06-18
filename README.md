@@ -1,6 +1,6 @@
 # QuantumultX 简约配置（MageGojo）
 
-一份精简、可读、带统一图标的 Quantumult X 配置：**订阅解析 + AI 分流 + 常用业务分流 + 地区筛选**（自动排除不支持地区与垃圾节点）。策略组无 emoji，使用统一风格图标。
+一份精简、可读、带统一图标的 Quantumult X 配置：**订阅解析 + AI 精确分流（本地手写）+ 去广告 + 地区筛选 + 兜底**。除「广告拦截」用远程规则集外，其余分流全部 `[filter_local]` 本地手写，少拉远程、冷启动更快。策略组无 emoji，使用统一风格图标。
 
 ## 快速开始
 1. Quantumult X →「设置 / 配置」→ 引用 / 下载下面的链接（走 jsDelivr，大陆可直连，避免冷启动回环）：
@@ -22,15 +22,15 @@
 |---|---|
 | OpenAI / Claude / GoogleAI | AI 对话 / 接口，封 港澳俄中(走 `AI自动`)。默认 `AI自动`(总有节点不黑洞)；有住宅 / 家宽节点时可手动切 `AI住宅`(住宅优先测速) 或 `AI故障转移`(住宅池按序故障转移)，住宅 IP 基本能过 ChatGPT 风控。详见 `docs/设计.md` |
 | Gemini / GoogleSearch | Gemini 网页版放行港澳(走 `Gemini自动`)；谷歌搜索仅封中国大陆(走 `Google自动`)。均追加 `全局自动 / direct` 兜底防黑洞 |
-| GitHub / YouTube / TikTok / 国际媒体 | 常用代理业务（国际媒体含 Netflix / Disney+ / HBO / Spotify 等），走 `代理` 或 `全局自动` |
-| 微软服务 / 苹果服务 / 国内服务 | 默认直连，可切代理 |
-| 广告拦截 | 默认 `reject` |
-| 漏网之鱼 | 兜底分流 |
+| 国内服务 | `[filter_local]` 的 `geoip,cn` 命中 → 直连（默认 direct，可切代理）|
+| 广告拦截 | 默认 `reject`（唯一保留的远程规则集 Advertising）|
+| 漏网之鱼 | 兜底分流：GitHub / YouTube / 微软 / 苹果 / 流媒体等**未单独分流**的流量都走这里 → 代理 |
 | 代理 | 手动总组（含全部节点手动池）|
 | 全局自动 / AI自动 / AI住宅 / AI故障转移 / Gemini自动 / Google自动 | 自动测速 / 住宅 / 故障转移基础组（按各平台支持地区筛选）|
 
 > **AI 可达性说明**：QX 不支持给单个策略组设独立健康检查 URL（只能用全局 `server_check_url`），无法像 Shadowrocket 那样用 `chatgpt.com/cdn-cgi/trace` 探测 OpenAI 风控。故用「住宅优先 + 故障转移」逼近：`AI住宅` / `AI故障转移` 只挑订阅里名字含 家宽 / 原生 / 住宅 / 解锁 / 流媒体 的节点，这类住宅 IP 基本能过 OpenAI / Claude 风控；若订阅无此类节点，两组会空，主组自动回退 `AI自动`，不黑洞。
 > **GoogleAI vs GoogleSearch vs Gemini** 的精确分流（AI Studio / Gemini API → GoogleAI；gemini.google.com → Gemini；www.google.com → GoogleSearch）在 `[filter_local]` 手写完成——blackmatrix7 的 Gemini / Google 列表会把三者混为一谈，故不引用。
+> **精简分流**：除「广告拦截」远程规则集外，所有路由都在 `[filter_local]` 手写——AI 五组精确分流 + 局域网直连 + `geoip,cn→国内服务` + `final→漏网之鱼`。GitHub / YouTube / 微软 / 苹果 / 流媒体等**不单独设组**，统一走「漏网之鱼」→ 代理（仍可正常使用，只是不细分）。这样策略组与分流规则一一对应，不会出现空挂的孤儿组。
 
 ## 图标
 - AI 区：[lobehub/lobe-icons](https://github.com/lobehub/lobe-icons)
