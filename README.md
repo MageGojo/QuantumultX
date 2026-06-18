@@ -3,9 +3,8 @@
 一份精简、可读、带统一图标的 Quantumult X 配置：**订阅解析 + AI 分流 + 常用业务分流 + 地区筛选**（自动排除不支持地区与垃圾节点）。策略组无 emoji，使用统一风格图标。
 
 ## 快速开始
-1. Quantumult X →「设置 / 配置」→ 引用 / 下载下面任一链接：
-   - 直连：`https://raw.githubusercontent.com/MageGojo/QuantumultX/main/MageGojo.conf`
-   - jsDelivr 加速：`https://cdn.jsdelivr.net/gh/MageGojo/QuantumultX@main/MageGojo.conf`
+1. Quantumult X →「设置 / 配置」→ 引用 / 下载下面的链接（你的配置仅托管在 GitHub，不经任何 CDN 分发）：
+   `https://raw.githubusercontent.com/MageGojo/QuantumultX/main/MageGojo.conf`
 2. 打开 `MageGojo.conf`，把 `[server_remote]` 里的示例链接替换为你的**机场订阅链接**（可多条）。
 3. 重启 Quantumult X，订阅节点与策略组图标会自动加载。
 
