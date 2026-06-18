@@ -11,13 +11,13 @@
 ## 策略组一览
 | 策略组 | 说明 |
 |---|---|
-| OpenAI / Gemini / Claude / Google | AI 平台。默认 `AI自动`（自动测速，已排除香港 / 回国 / 垃圾节点），也可手动选具体节点 |
+| OpenAI / Gemini / Claude / Google | AI 平台，各家可用地区不同：OpenAI/Claude 封 港+俄+中(走 `AI自动`)、Gemini 放行香港(走 `Gemini自动`)、Google 仅封中国大陆(走 `Google自动`)。详见 `docs/设计.md` |
 | GitHub / YouTube / TikTok / 国际媒体 | 常用代理业务（国际媒体含 Netflix / Disney+ / HBO / Spotify 等），走 `代理` 或 `全局自动` |
 | 微软服务 / 苹果服务 / 国内服务 | 默认直连，可切代理 |
 | 广告拦截 | 默认 `reject` |
 | 漏网之鱼 | 兜底分流 |
 | 代理 | 手动总组（含全部节点手动池）|
-| 全局自动 / AI自动 | 自动测速基础组 |
+| 全局自动 / AI自动 / Gemini自动 / Google自动 | 自动测速基础组（AI 三组按各平台支持地区筛选）|
 
 ## 图标
 - AI 区：[lobehub/lobe-icons](https://github.com/lobehub/lobe-icons)
