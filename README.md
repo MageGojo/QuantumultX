@@ -12,6 +12,11 @@
 
 > 订阅 / 规则 / 图标偶发拉取失败时：Quantumult X →「设置 → 其他 → 资源解析使用代理」打开，让它们走节点更新，进一步免疫冷启动回环。
 
+> **jsDelivr 缓存说明（重要）**：`@main` 分支链接有约 12h 的 CDN 缓存，**刚 push 完不会立刻刷新**。想立即拿到最新配置，二选一：
+> 1. 用 **commit 锁定链接**（不可变、秒生效）：`https://testingcf.jsdelivr.net/gh/MageGojo/QuantumultX@<最新commit短哈希>/MageGojo.conf`，例如当前最新：`@8adf211`。
+> 2. 访问一次刷新接口再等几分钟：`https://purge.jsdelivr.net/gh/MageGojo/QuantumultX@main/MageGojo.conf`。
+> 日常自动更新用 `@main` 即可（约 12h 内自动同步到最新）。
+
 ## 策略组一览
 | 策略组 | 说明 |
 |---|---|
